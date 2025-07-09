@@ -3,6 +3,7 @@ pragma solidity ^0.8.21;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 interface IBatchCHZBuyer {
     function swapEqualCHZToMultipleTokens(address[] calldata tokensOut, uint256 minOutPerToken) external payable;
@@ -23,11 +24,12 @@ interface IVault {
 }
 
 interface IWCHZ {
+    function deposit() external payable;
     function withdraw(uint256 amount) external;
     function balanceOf(address account) external view returns (uint256);
 }
 
-contract CompetitionVault is Ownable {
+contract CompetitionVault is Ownable, ReentrancyGuard {
     address public nftAddress;
     IBatchCHZBuyer public batchBuyer;
     address public immutable WCHZ;
@@ -56,6 +58,7 @@ contract CompetitionVault is Ownable {
     event DepositStatusChanged(bool status);
     event RedeemStatusChanged(bool status);
     event EmergencyWithdraw(address to, uint256 amount);
+    event EmergencyERC20Withdraw(address indexed token, address indexed to, uint256 amount);
     event TokensUpdated(address[] newTokens);
     event AdminUpdated(address indexed admin, bool isAdmin);
     event AdminSwapExecuted(address tokenIn, address tokenOut, uint256 amountIn, uint256 minOut);
@@ -67,11 +70,11 @@ contract CompetitionVault is Ownable {
         address _wchz,
         address _adminRouter,
         address _factory
-    ) Ownable(_factory) {
-        require(_batchBuyer != address(0), "Invalid batchBuyer");
-        require(_wchz != address(0), "Invalid WCHZ");
-        require(_factory != address(0), "Invalid factory");
-        require(_adminRouter != address(0), "Invalid adminRouter");
+    ) Ownable() {
+        require(_batchBuyer != address(0), "Invalid");
+        require(_wchz != address(0), "Invalid");
+        require(_factory != address(0), "Invalid");
+        require(_adminRouter != address(0), "Invalid");
 
         nftAddress = _nft;
         batchBuyer = IBatchCHZBuyer(_batchBuyer);
@@ -95,8 +98,8 @@ contract CompetitionVault is Ownable {
     }
 
     function setNFT(address _nft) external onlyOwner {
-        require(nftAddress == address(0), "NFT already set");
-        require(_nft != address(0), "Invalid NFT address");
+        require(nftAddress == address(0), "NFTset");
+        require(_nft != address(0), "Invalid");
         nftAddress = _nft;
     }
 
@@ -129,11 +132,11 @@ contract CompetitionVault is Ownable {
         emit TokensUpdated(newTokens);
     }
 
-    function depositAndBuy() external payable {
+    function depositAndBuy() external payable nonReentrant {
         require(!competitionEnded, "Competition ended");
         require(depositsOpen, "Deposits closed");
-        require(tokensToBuy.length > 0, "No tokens configured");
-        require(msg.value > 0, "No CHZ sent");
+        require(tokensToBuy.length > 0, "No tokens");
+        require(msg.value > 0, "No");
 
         IVaultNFT nft = IVaultNFT(nftAddress);
         uint256 tokenId = nft.mint(msg.sender, msg.value);
@@ -161,17 +164,17 @@ contract CompetitionVault is Ownable {
         emit Deposited(msg.sender, msg.value, tokenId);
     }
 
-    function redeem(uint256 tokenId, bool withdrawToOther, address nextVault) external {
+    function redeem(uint256 tokenId) external nonReentrant {
         require(competitionEnded, "Competition not ended");
-        require(redeemsOpen, "Redeems closed");
+        require(redeemsOpen, "Closed");
 
         IVaultNFT nft = IVaultNFT(nftAddress);
         require(nft.ownerOf(tokenId) == msg.sender, "Not token owner");
-        require(!hasRedeemed[tokenId], "Already redeemed");
+        require(!hasRedeemed[tokenId], "Redeemed");
 
         uint256 invested = investedPerNFT[tokenId];
-        require(invested > 0, "Nothing invested");
-        require(totalInvested > 0, "No remaining investment");
+        require(invested > 0, "0 invested");
+        require(totalInvested > 0, "No remaining");
 
         hasRedeemed[tokenId] = true;
         nft.burn(tokenId);
@@ -183,27 +186,32 @@ contract CompetitionVault is Ownable {
 
         uint256 vaultBalance = address(this).balance;
         uint256 userShare = (vaultBalance * invested) / totalInvested;
-
         totalInvested -= invested;
 
-        if (withdrawToOther) {
-            require(IFactory(factory).isValidVault(nextVault), "Invalid vault");
-            payable(nextVault).transfer(userShare);
-            IVault(nextVault).depositFromPreviousVault(msg.sender, userShare, invested);
-        } else {
-            uint256 profit = userShare > invested ? userShare - invested : 0;
-            uint256 fee = (profit * 20) / 100;
-            uint256 payout = userShare - fee;
-            payable(msg.sender).transfer(payout);
-        }
+        uint256 profit = userShare > invested ? userShare - invested : 0;
+        uint256 fee = (profit * 20) / 100;
+        uint256 payout = userShare - fee;
+        payable(msg.sender).transfer(payout);
 
         emit Redeemed(msg.sender, userShare, tokenId);
     }
 
-    function emergencyWithdraw(address to) external onlyAdmin {
+
+    function emergencyWithdraw(address to) external onlyAdmin nonReentrant{
         uint256 amount = address(this).balance;
         payable(to).transfer(amount);
         emit EmergencyWithdraw(to, amount);
+    }
+
+    function emergencyWithdrawERC20(address token, address to, uint256 amount) external onlyOwner nonReentrant{
+        require(token != address(0), "Invalid");
+        require(to != address(0), "Invalid");
+        require(amount > 0, "Must >0");
+
+        bool success = IERC20(token).transfer(to, amount);
+        require(success, "Transfer failed");
+
+        emit EmergencyERC20Withdraw(token, to, amount);
     }
 
     function adminSwapExactTokensForTokens(

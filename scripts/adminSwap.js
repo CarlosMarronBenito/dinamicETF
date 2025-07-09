@@ -11,7 +11,7 @@ async function main() {
 
   const vault = await ethers.getContractAt("CompetitionVault", vaultAddress);
 
-  const amountIn = ethers.parseUnits("2367.2", 18);
+  const amountIn = ethers.parseUnits("8.1", 18);
   const amountOutMin = 0;
   const path = [
     "0x141Da2E915892D6D6c7584424A64903050Ac4226",

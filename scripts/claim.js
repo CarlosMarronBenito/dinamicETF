@@ -14,10 +14,8 @@ async function main() {
   const vault = await ethers.getContractAt("CompetitionVault", vaultAddress);
   const nft = await ethers.getContractAt("CompetitionNFT", nftAddress);
 
-  // 👉 Puedes cambiar esto si sabes el tokenId exacto
   const tokenId = 1;
 
-  // Comprobación: ¿el usuario es dueño del token?
   const owner = await nft.ownerOf(tokenId);
   console.log(`🎫 El NFT ${tokenId} pertenece a: ${owner}`);
   console.log(`👤 Tú eres: ${user.address}`);
@@ -28,7 +26,7 @@ async function main() {
 
   console.log(`🔥 Haciendo redeem del NFT ${tokenId}...`);
 
-  const tx = await vault.redeem(tokenId, false, ethers.ZeroAddress);
+  const tx = await vault.redeem(tokenId);  
   console.log("⏳ Tx enviada:", tx.hash);
 
   const receipt = await tx.wait();

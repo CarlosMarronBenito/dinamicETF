@@ -1,91 +1,76 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.21;
 
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "hardhat/console.sol";
 
-contract CompetitionNFT is ERC721URIStorage, Ownable {
+error OnlyVault();
+error VaultAlreadySet();
+error InvalidVault();
+error EmptyURI();
+error TokenDoesNotExist();
+
+contract CompetitionNFT is ERC721, Ownable {
     uint256 private _tokenIdCounter;
     address public vault;
-    string public baseTokenURI;
+    string private baseTokenURI;
 
     mapping(uint256 => uint256) public investedAmount;
 
-    event NFTMinted(address indexed to, uint256 tokenId, uint256 amount, string uri);
-    event NFTBurned(uint256 tokenId);
-    event VaultSet(address vault);
-    event BaseURISet(string uri);
-    event TokenURIUpdated(uint256 tokenId, string newUri);
+    event Minted(address indexed to, uint256 tokenId, uint256 amount);
+    event Burned(uint256 tokenId);
+    event VaultAssigned(address vault);
+    event UriUpdated(uint256 tokenId);
 
-    constructor(
-        string memory name,
-        string memory symbol,
-        address initialOwner
-    )
+    constructor(string memory name, string memory symbol, address initialOwner)
         ERC721(name, symbol)
-        Ownable(initialOwner)
     {
-        console.log("NFT created by:", initialOwner);
+        transferOwnership(initialOwner);
     }
 
-    modifier onlyVault() {
-        require(msg.sender == vault, "Only vault can call");
-        _; 
+    modifier onlyVaultMod() {
+        if (msg.sender != vault) revert OnlyVault();
+        _;
     }
 
     function setBaseTokenURI(string memory uri) external onlyOwner {
-        require(bytes(uri).length > 0, "Empty URI");
+        if (bytes(uri).length == 0) revert EmptyURI();
         baseTokenURI = uri;
-        emit BaseURISet(uri);
     }
 
-    function mint(
-        address to,
-        uint256 amount
-    ) external onlyVault returns (uint256) {
-        require(bytes(baseTokenURI).length > 0, "Base URI not set");
+    function mint(address to, uint256 amount) external onlyVaultMod returns (uint256) {
+        if (bytes(baseTokenURI).length == 0) revert EmptyURI();
 
-        _tokenIdCounter++;
-        uint256 tokenId = _tokenIdCounter;
-
+        uint256 tokenId = ++_tokenIdCounter;
         _mint(to, tokenId);
-        _setTokenURI(tokenId, baseTokenURI);
         investedAmount[tokenId] = amount;
 
-        emit NFTMinted(to, tokenId, amount, baseTokenURI);
+        emit Minted(to, tokenId, amount);
         return tokenId;
     }
 
-    function burn(uint256 tokenId) external onlyVault {
+    function burn(uint256 tokenId) external onlyVaultMod {
         _burn(tokenId);
         delete investedAmount[tokenId];
-        emit NFTBurned(tokenId);
+        emit Burned(tokenId);
     }
 
     function setVault(address _vault) external onlyOwner {
-        require(vault == address(0), "Vault already set");
-        require(_vault != address(0), "Invalid vault");
+        if (vault != address(0)) revert VaultAlreadySet();
+        if (_vault == address(0)) revert InvalidVault();
         vault = _vault;
-        emit VaultSet(_vault);
+        emit VaultAssigned(_vault);
     }
 
-    function updateTokenURI(uint256 tokenId, string memory newUri) external onlyVault {
-        require(_ownerOf(tokenId) != address(0), "Token does not exist");
-        require(bytes(newUri).length > 0, "Empty URI");
-        _setTokenURI(tokenId, newUri);
-        emit TokenURIUpdated(tokenId, newUri);
+    function updateTokenURI(uint256 tokenId, string memory newUri) external onlyVaultMod {
+        if (!_exists(tokenId)) revert TokenDoesNotExist();
+        if (bytes(newUri).length == 0) revert EmptyURI();
+        baseTokenURI = newUri;
+        emit UriUpdated(tokenId);
     }
 
-    function getCurrentTokenId() external view returns (uint256) {
-        return _tokenIdCounter;
-    }
-
-    function getVault() external view returns (address) {
-        return vault;
-    }
-
-    function getInvestedAmount(uint256 tokenId) external view returns (uint256) {
-        return investedAmount[tokenId];
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        if (!_exists(tokenId)) revert TokenDoesNotExist();
+        return baseTokenURI;
     }
 }

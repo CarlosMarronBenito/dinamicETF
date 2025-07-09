@@ -1,3 +1,8 @@
 {
-  "factory": "0x43217aB111271be0701C65760d6d6512f107eFC8"
+  "factory": "0xCC3E1F5e3AD40dede20733E8d34981EcAdE81b9E",
+  "lastCompetition": {
+    "name": "TEST_V2AKC5",
+    "vault": "0xBdfB5c003CE2c4Ca346FDB47F5B6aaEc90f88274",
+    "nft": "0x30823d51D384709Dbcd6243cA72Ad0Ab573D8D88"
+  }
 }

@@ -28,8 +28,8 @@ contract CompetitionFactory is Ownable {
     event DepositsStatusChanged(string indexed competition, bool status);
     event RedeemsStatusChanged(string indexed competition, bool status);
 
-    constructor(address _batchCHZBuyer) Ownable(msg.sender) {
-        require(_batchCHZBuyer != address(0), "Invalid batch buyer address");
+    constructor(address _batchCHZBuyer) Ownable() {
+        require(_batchCHZBuyer != address(0), "Invalid");
         batchCHZBuyer = _batchCHZBuyer;
     }
 
@@ -42,15 +42,15 @@ contract CompetitionFactory is Ownable {
         address router,
         string memory baseURI
     ) external onlyOwner {
-        require(competitions[name].vault == address(0), "Competition already exists");
-        require(initialTokens.length > 0, "No initial tokens provided");
-        require(wchz != address(0), "Invalid WCHZ address");
-        require(router != address(0), "Invalid router address");
+        require(competitions[name].vault == address(0), "Competition exists");
+        require(initialTokens.length > 0, "No initial tokens");
+        require(wchz != address(0), "Invalid WCHZ");
+        require(router != address(0), "Invalid router");
 
         for (uint i = 0; i < initialTokens.length; i++) {
-            require(initialTokens[i] != address(0), "Zero token not allowed");
+            require(initialTokens[i] != address(0), "Zero token");
             for (uint j = i + 1; j < initialTokens.length; j++) {
-                require(initialTokens[i] != initialTokens[j], "Duplicate token in list");
+                require(initialTokens[i] != initialTokens[j], "Duplicate token");
             }
         }
 
@@ -63,7 +63,7 @@ contract CompetitionFactory is Ownable {
             initialTokens,
             wchz,
             router,
-            address(this) // factory address
+            address(this) 
         );
         emit VaultDeployed(address(vault), address(nft));
 
@@ -114,13 +114,13 @@ contract CompetitionFactory is Ownable {
     }
 
     function setDepositsOpen(string memory name, bool status) external onlyOwner {
-        require(competitions[name].vault != address(0), "Competition does not exist");
+        require(competitions[name].vault != address(0), "Don't exist");
         competitions[name].depositsOpen = status;
         emit DepositsStatusChanged(name, status);
     }
 
     function setRedeemsOpen(string memory name, bool status) external onlyOwner {
-        require(competitions[name].vault != address(0), "Competition does not exist");
+        require(competitions[name].vault != address(0), "Don't exist");
         competitions[name].redeemsOpen = status;
         emit RedeemsStatusChanged(name, status);
     }
