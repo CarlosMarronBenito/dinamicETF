@@ -6,3 +6,6 @@ artifacts
 .env
 yarn.lock
 ./yarn.lock
+./cache
+./package-lock.json
+package-lock.json
