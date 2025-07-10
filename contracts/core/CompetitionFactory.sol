@@ -5,7 +5,6 @@ import "./CompetitionVault.sol";
 import "./CompetitionNFT.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
-import "hardhat/console.sol";
 contract CompetitionFactory is Ownable {
     struct CompetitionInfo {
         bool exists;
