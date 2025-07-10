@@ -23,6 +23,7 @@ contract CompetitionFactory is Ownable {
 
 
     address public batchCHZBuyer;
+    address public feeReceiver;
 
     event CompetitionCreated(string indexed name, address vault, address nft);
     event NFTDeployed(address indexed nft, string name, string symbol);
@@ -34,6 +35,7 @@ contract CompetitionFactory is Ownable {
     constructor(address _batchCHZBuyer) Ownable() {
         require(_batchCHZBuyer != address(0), "Invalid");
         batchCHZBuyer = _batchCHZBuyer;
+        feeReceiver = msg.sender;
     }
 
     function createCompetition(
@@ -55,7 +57,7 @@ contract CompetitionFactory is Ownable {
         require(router != address(0), "Invalid router");
 
         mapping(address => bool) storage exists = isExists[hash];
-        for (uint i; i < len;) {
+        for (uint256 i; i < len;) {
             address token = initialTokens[i];
             require(token != address(0), "Token cannot be zero address");
             require(!exists[token], "Duplicate token");
@@ -160,4 +162,16 @@ contract CompetitionFactory is Ownable {
         bytes32 hash = keccak256(abi.encodePacked(name));
         return competitions[hash].baseURI;
     }
+
+    function setFeeReceiver(address receiver) external onlyOwner{
+        if(receiver != address(0)){
+            feeReceiver = receiver;
+        }
+    }
+
+    function getFeeReceiveerAddress() external view returns(address){
+        return feeReceiver;
+    }
 }
+
+

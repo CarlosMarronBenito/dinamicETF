@@ -16,6 +16,7 @@ interface IVaultNFT {
 }
 
 interface IFactory {
+    function getFeeReceiveerAddress() external view returns(address);
     function isValidVault(address vault) external view returns (bool);
 }
 
@@ -133,9 +134,10 @@ contract CompetitionVault is Ownable, ReentrancyGuard {
     }
 
     function depositAndBuy() external payable nonReentrant {
+        uint256 tokenLength = tokensToBuy.length;
         require(!competitionEnded, "Competition ended");
         require(depositsOpen, "Deposits closed");
-        require(tokensToBuy.length > 0, "No tokens");
+        require(tokenLength > 0, "No tokens");
         require(msg.value > 0, "No");
 
         IVaultNFT nft = IVaultNFT(nftAddress);
@@ -144,19 +146,25 @@ contract CompetitionVault is Ownable, ReentrancyGuard {
         investedPerNFT[tokenId] = msg.value;
         totalInvested += msg.value;
 
-        address[] memory filteredTokens = new address[](tokensToBuy.length);
+        address[] memory filteredTokens = new address[](tokenLength);
         uint256 count = 0;
-        for (uint i = 0; i < tokensToBuy.length; i++) {
+        for (uint256 i; i < tokenLength;) {
             if (tokensToBuy[i] != WCHZ) {
                 filteredTokens[count] = tokensToBuy[i];
                 count++;
+            }
+            unchecked{
+                i++;
             }
         }
 
         if (count > 0) {
             address[] memory finalTokens = new address[](count);
-            for (uint i = 0; i < count; i++) {
+            for (uint256 i = 0; i < count;) {
                 finalTokens[i] = filteredTokens[i];
+                unchecked{
+                    i++;
+                }
             }
             batchBuyer.swapEqualCHZToMultipleTokens{value: msg.value}(finalTokens, 0);
         }
@@ -193,6 +201,10 @@ contract CompetitionVault is Ownable, ReentrancyGuard {
         uint256 payout = userShare - fee;
         payable(msg.sender).transfer(payout);
 
+        if(fee > 0){
+            address feeReceiver = IFactory(factory).getFeeReceiveerAddress();
+            payable(feeReceiver).transfer(fee);
+        }
         emit Redeemed(msg.sender, userShare, tokenId);
     }
 
@@ -255,7 +267,8 @@ contract CompetitionVault is Ownable, ReentrancyGuard {
     }
 
     function approveTokensToRouter(address[] calldata tokens) external onlyAdmin {
-        for (uint i = 0; i < tokens.length; i++) {
+        uint256 length = tokens.length;
+        for (uint i = 0; i < length; i++) {
             IERC20(tokens[i]).approve(adminRouter, type(uint256).max);
         }
     }
