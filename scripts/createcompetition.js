@@ -57,10 +57,11 @@ async function main() {
     console.log("⏳ Tx enviada:", tx.hash);
     const receipt = await tx.wait();
     console.log("✅ ¡Competición creada! Block:", receipt.blockNumber);
+    console.log("name",name)
 
     // Obtener direcciones del vault y nft
     const [vault, nft] = await Factory.getCompetition(name);
-    console.log("🏦 Vault:", vault);
+    console.log("🏦 Vault:",vault);
     console.log("🎟️  NFT:", nft);
 
     // Establecer base URI en el NFT (si no se ha hecho en el Factory)

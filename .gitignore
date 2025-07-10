@@ -1,1 +1,8 @@
 .env
+./node_modules
+node_modules
+artifacts
+./artifacts
+.env
+yarn.lock
+./yarn.lock

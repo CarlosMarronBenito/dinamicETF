@@ -57,7 +57,7 @@ contract CompetitionNFT is ERC721, Ownable {
 
     function setVault(address _vault) external onlyOwner {
         if (vault != address(0)) revert VaultAlreadySet();
-        if (_vault == address(0)) revert InvalidVault();
+        //if (_vault == address(0)) revert InvalidVault();//vault must be upgradable
         vault = _vault;
         emit VaultAssigned(_vault);
     }

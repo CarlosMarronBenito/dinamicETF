@@ -1,9 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\contracts\\core\\CompetitionFactory.sol": {
-      "lastModificationDate": 1752072702917,
-      "contentHash": "66e3fe0b270660df0a186e5810325629",
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/contracts/core/CompetitionFactory.sol": {
+      "lastModificationDate": 1752118839957,
+      "contentHash": "a3dd8bc071f9653ef4531f4f48707046",
       "sourceName": "contracts/core/CompetitionFactory.sol",
       "solcConfig": {
         "version": "0.8.21",
@@ -32,7 +32,9 @@
       "imports": [
         "./CompetitionVault.sol",
         "./CompetitionNFT.sol",
-        "@openzeppelin/contracts/access/Ownable.sol"
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         "^0.8.21"
@@ -41,9 +43,9 @@
         "CompetitionFactory"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\contracts\\core\\CompetitionVault.sol": {
-      "lastModificationDate": 1752072581411,
-      "contentHash": "67ab79796f18527c85999996a4b9db94",
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/contracts/core/CompetitionVault.sol": {
+      "lastModificationDate": 1752115577716,
+      "contentHash": "6cad074a4ff67f0d6c6da50e0ecf0462",
       "sourceName": "contracts/core/CompetitionVault.sol",
       "solcConfig": {
         "version": "0.8.21",
@@ -86,9 +88,9 @@
         "IWCHZ"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\contracts\\core\\CompetitionNFT.sol": {
-      "lastModificationDate": 1752073039909,
-      "contentHash": "53987d843809bbd94d18a9abc8e9cf22",
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/contracts/core/CompetitionNFT.sol": {
+      "lastModificationDate": 1752115207714,
+      "contentHash": "b982cec3d95dc69f16c974808a0c01d2",
       "sourceName": "contracts/core/CompetitionNFT.sol",
       "solcConfig": {
         "version": "0.8.21",
@@ -125,8 +127,44 @@
         "CompetitionNFT"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
-      "lastModificationDate": 1752070669937,
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1752115659855,
+      "contentHash": "681c532e816169606d13a5fe8b475074",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.21",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 40
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    },
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1752115660181,
       "contentHash": "5a20b2cad87ddb61c7a3a6af21289e28",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -163,10 +201,10 @@
         "Ownable"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721URIStorage.sol": {
-      "lastModificationDate": 1752070669285,
-      "contentHash": "de368c6a87e159c86544ae5041b58cf3",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/utils/structs/EnumerableSet.sol": {
+      "lastModificationDate": 1752115660708,
+      "contentHash": "e029f029abc1fd2d85d54fd69086f076",
+      "sourceName": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
       "solcConfig": {
         "version": "0.8.21",
         "settings": {
@@ -191,21 +229,18 @@
           }
         }
       },
-      "imports": [
-        "../ERC721.sol",
-        "../../../interfaces/IERC4906.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "ERC721URIStorage"
+        "EnumerableSet"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC4906.sol": {
-      "lastModificationDate": 1752070669680,
-      "contentHash": "d3f355e15269d1476d86c84730cebb5e",
-      "sourceName": "@openzeppelin/contracts/interfaces/IERC4906.sol",
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol": {
+      "lastModificationDate": 1752115660181,
+      "contentHash": "1535f8c0c68463f8c1b5239f7584e71f",
+      "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
       "solcConfig": {
         "version": "0.8.21",
         "settings": {
@@ -230,21 +265,18 @@
           }
         }
       },
-      "imports": [
-        "./IERC165.sol",
-        "./IERC721.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "IERC4906"
+        "ReentrancyGuard"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC165.sol": {
-      "lastModificationDate": 1752070669574,
-      "contentHash": "ee9624272968c23d93d4c2e39f06e6e2",
-      "sourceName": "@openzeppelin/contracts/interfaces/IERC165.sol",
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1752115660731,
+      "contentHash": "df36f7051335cd1e748b1b6463b7fdd3",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
         "version": "0.8.21",
         "settings": {
@@ -269,16 +301,52 @@
           }
         }
       },
-      "imports": [
-        "../utils/introspection/IERC165.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "^0.8.0"
       ],
-      "artifacts": []
+      "artifacts": [
+        "IERC20"
+      ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
-      "lastModificationDate": 1752070669212,
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1752115660181,
+      "contentHash": "f07feb4a44b1a4872370da5aa70e8e46",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.21",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 40
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
+      "lastModificationDate": 1752115660731,
       "contentHash": "95602b04f0b53f1139f4668d123ddeb7",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
@@ -321,8 +389,44 @@
         "ERC721"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
-      "lastModificationDate": 1752070670041,
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/utils/Address.sol": {
+      "lastModificationDate": 1752115660181,
+      "contentHash": "211ffd288c1588ba8c10eae668ca3c66",
+      "sourceName": "@openzeppelin/contracts/utils/Address.sol",
+      "solcConfig": {
+        "version": "0.8.21",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 40
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.1"
+      ],
+      "artifacts": [
+        "Address"
+      ]
+    },
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1752115660181,
       "contentHash": "48686fc32a22a3754b8e63321857dd2a",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
@@ -360,154 +464,8 @@
         "Strings"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC721.sol": {
-      "lastModificationDate": 1752070669710,
-      "contentHash": "e6da7798a8c22c5043cc42d64a2a8f80",
-      "sourceName": "@openzeppelin/contracts/interfaces/IERC721.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../token/ERC721/IERC721.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": []
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1752070669578,
-      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
-      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC165"
-      ]
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
-      "lastModificationDate": 1752070669716,
-      "contentHash": "48de4c9a3a4ae5ef66a2aa620843413f",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../utils/introspection/IERC165.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC721"
-      ]
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1752070668387,
-      "contentHash": "f07feb4a44b1a4872370da5aa70e8e46",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1752070668924,
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "lastModificationDate": 1752115660709,
       "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -544,8 +502,82 @@
         "ERC165"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
-      "lastModificationDate": 1752070669742,
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "lastModificationDate": 1752115660731,
+      "contentHash": "48de4c9a3a4ae5ef66a2aa620843413f",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "solcConfig": {
+        "version": "0.8.21",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 40
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721"
+      ]
+    },
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+      "lastModificationDate": 1752115660731,
+      "contentHash": "c22d4395e33763de693fd440c6fd10e1",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "solcConfig": {
+        "version": "0.8.21",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 40
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Receiver"
+      ]
+    },
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "lastModificationDate": 1752115660907,
       "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -582,44 +614,8 @@
         "IERC721Metadata"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SafeCast.sol": {
-      "lastModificationDate": 1751741935389,
-      "contentHash": "2adca1150f58fc6f3d1f0a0f22ee7cca",
-      "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "SafeCast"
-      ]
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\utils\\math\\Math.sol": {
-      "lastModificationDate": 1752070669902,
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "lastModificationDate": 1752115660710,
       "contentHash": "fe63409d8a06818b926cf89e0ea88b1b",
       "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
@@ -654,8 +650,8 @@
         "Math"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SignedMath.sol": {
-      "lastModificationDate": 1752070670024,
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "lastModificationDate": 1752115660708,
       "contentHash": "9488ebd4daacfee8ad04811600d7d061",
       "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
       "solcConfig": {
@@ -690,10 +686,10 @@
         "SignedMath"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
-      "lastModificationDate": 1752070669753,
-      "contentHash": "c22d4395e33763de693fd440c6fd10e1",
-      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1752115660709,
+      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
         "version": "0.8.21",
         "settings": {
@@ -723,12 +719,12 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "IERC721Receiver"
+        "IERC165"
       ]
     },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\contracts\\utils\\BatchCHZBuyer.sol": {
-      "lastModificationDate": 1751791836549,
-      "contentHash": "131f1d35c503c908b5e905c9811b2982",
+    "/Users/ersanyakit/Documents/kewl/dinamicETF/contracts/utils/BatchCHZBuyer.sol": {
+      "lastModificationDate": 1752114739792,
+      "contentHash": "ef2702437ba2a6e9fcaf76c899c43219",
       "sourceName": "contracts/utils/BatchCHZBuyer.sol",
       "solcConfig": {
         "version": "0.8.21",
@@ -762,150 +758,6 @@
         "BatchCHZBuyerNative",
         "IUniswapV2Router",
         "IWCHZ"
-      ]
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\hardhat\\console.sol": {
-      "lastModificationDate": 1751701997381,
-      "contentHash": "681c532e816169606d13a5fe8b475074",
-      "sourceName": "hardhat/console.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.22 <0.9.0"
-      ],
-      "artifacts": [
-        "console"
-      ]
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
-      "lastModificationDate": 1752070669615,
-      "contentHash": "df36f7051335cd1e748b1b6463b7fdd3",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC20"
-      ]
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
-      "lastModificationDate": 1752070668247,
-      "contentHash": "211ffd288c1588ba8c10eae668ca3c66",
-      "sourceName": "@openzeppelin/contracts/utils/Address.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.1"
-      ],
-      "artifacts": [
-        "Address"
-      ]
-    },
-    "C:\\Users\\PC\\OneDrive\\Documentos\\NuevaChiliz\\paris\\batchbuyeq\\node_modules\\@openzeppelin\\contracts\\security\\ReentrancyGuard.sol": {
-      "lastModificationDate": 1752070669970,
-      "contentHash": "1535f8c0c68463f8c1b5239f7584e71f",
-      "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
-      "solcConfig": {
-        "version": "0.8.21",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 40
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ReentrancyGuard"
       ]
     }
   }
